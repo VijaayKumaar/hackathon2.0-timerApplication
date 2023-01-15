@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+<style>
+    body {
+        background-color: rgb(20, 14, 53);
+    }
+
+
+
+    #timer {
+
+        display: flex;
+
+        align-items: center;
+
+
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: hsla(0, 9%, 76%, 0.707);
+        justify-content: center;
+        font-size: 50px;
+    }
+
+
+
+
+    button {
+
+        padding: 10px;
+        margin: 10px;
+
+        margin-top: 15px;
+        color: white;
+        background-color: rgb(39, 39, 228);
+        border-radius: 3px;
+
+    }
+</style>
+
+
+
+<body>
+
+    <div id="timer"></div>
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button>
+    <button onclick="reset()">Reset</button>
+    <script>
+
+        var seconds = 0, minutes = 0, hours = 0,
+            t;
+
+        function add() {
+            seconds++;
+            if (seconds >= 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes >= 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+            document.getElementById("timer").innerHTML = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+            timer();
+        }
+
+        function timer() {
+            t = setTimeout(add, 1000);
+        }
+
+        function start() {
+            timer();
+        }
+
+        function stop() {
+            clearTimeout(t);
+        }
+
+        function reset() {
+            stop();
+            seconds = 0; minutes = 0; hours = 0;
+            document.getElementById("timer").innerHTML = "00:00:00";
+        }
+
+
+    </script>
+</body>
+
+</html>
